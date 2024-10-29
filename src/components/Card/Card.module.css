@@ -2,54 +2,66 @@
 
 /* General card style */
 .card {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: inline-block;
-    text-align: center;
-    height: 40vh;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Dynamic background colors */
-  .red {
-    background-color: #ffcccb;
-  }
-  
-  .blue {
-    background-color: #add8e6;
-  }
-  
-  .green {
-    background-color: #c6f6c6;
-  }
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: inline-block;
+  text-align: center;
+  height: 40vh;
+}
 
-  .yellow {
-    background-color: #ffffcc;
-  }
-  
-  /* Buttons */
-  button {
-    margin: 10px 5px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 
-  .hidden{
-    visibility: hidden;
-  }
-  
-  
+/* Dynamic background colors */
+.red {
+  background-color: #ffcccb;
+}
+
+.blue {
+  background-color: #add8e6;
+}
+
+.green {
+  background-color: #c6f6c6;
+}
+
+.yellow {
+  background-color: #ffffcc;
+}
+
+/* Buttons */
+button {
+  margin: 10px 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d4a8d3;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #a9a1a9;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+h2 {
+  cursor: pointer;
+}
+
+input {
+  margin-top: 10px;
+  padding: 0.5rem;
+  width: 90%;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}

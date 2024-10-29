@@ -1,7 +1,24 @@
-.cards{
+.cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     grid-gap: 1em;
     padding: 1rem;
     border-radius: 10px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+
+.addButton {
+    border-radius: 5px;
+    width: 20%;
+    height: 20%;
+    margin: auto;
+    padding: auto;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }

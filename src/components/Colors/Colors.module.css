@@ -3,10 +3,9 @@
     background-color: rgb(86, 86, 80);
     display: flex;
     justify-content: center;
-    margin-top: 10px;
     gap: 10px;
     transition: opacity 0.3s;
-    margin: auto;
+    margin: 2rem auto 0 auto;
     width: 80%;
   }
   
@@ -24,16 +23,21 @@
     transform: scale(1.2);
   }
   
-  /* Dynamic circle colors */
-  .red {
-    background-color: #ff6347;
-  }
-  
-  .blue {
-    background-color: #4169e1;
-  }
-  
-  .green {
-    background-color: #32cd32;
-  }
+ /* Dynamic background colors */
+ .red {
+  background-color: #ffcccb;
+}
+
+.blue {
+  background-color: #add8e6;
+}
+
+.green {
+  background-color: #c6f6c6;
+}
+
+.yellow {
+  background-color: #ffffcc;
+}
+
   
