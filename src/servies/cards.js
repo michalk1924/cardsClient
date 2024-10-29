@@ -28,9 +28,9 @@ const cardsService = {
             throw error;
         }
     },
-    async updateCard(id, card) {
+    async updateCard(id, body) {
         try{
-            const response = await http.put(`/cards/${id}`, card);
+            const response = await http.patch(`/cards/${id}`, body);
             return response.data
         }
         catch(error){

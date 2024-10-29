@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import cardsService from '../../servies/cards'
 import Card from '../Card/Card.jsx'
+import styles from './Cards.module.css'
 
-function Cards() {
-
-    const [cards, setCards] = useState([]);
+function Cards({cards, setCards}) {
 
     useEffect(() => {
         const fetchCards = async () => {
@@ -21,11 +20,10 @@ function Cards() {
 
     }, []);
 
-
     return (
-        <div>
+        <div className={styles.cards}>
             {cards.map(card =>
-                <Card card={card} key={card.id} />
+                <Card card={card} key={card.id} setCards={setCards} />
             )}
         </div>
     )
