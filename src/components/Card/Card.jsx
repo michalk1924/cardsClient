@@ -1,63 +1,38 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Card.module.css'
-import cardsService from '../../servies/cards'
 import Colors from '../ColorsSlector/ColorsSlector'
 import { AiOutlineBgColors } from 'react-icons/ai';
 import { MdDeleteSweep } from 'react-icons/md';
 
-function Card({ card, setCards }) {
+function Card({ card, updateCard, deleteCard, updateCardLocali }) {
 
   const [showColors, setShowColors] = useState(false);
   const [isInputText, setIsInputText] = useState(false);
 
-  useEffect(() => { if(card.isNewCard) setIsInputText(true)}, [card]);
+  useEffect(() => { if (card.isNewCard) setIsInputText(true) }, [card]);
 
   const showColorsF = () => {
     setShowColors(prev => !prev);
   }
 
-  const deleteCard = async () => {
-    try {
-      await cardsService.deleteCard(card.id);
-      setCards(prev => prev.filter(c => c.id !== card.id));
-    }
-    catch (error) {
-      console.log('Error deleting card');
-    }
-  }
-
   const changeText = async (updatedText) => {
-    try {
-      if (updatedText === '') {
-        updatedText = "..."
-      }
-      await cardsService.updateCard(card.id, { text: updatedText });
-      setCards(prev => prev.map(c => c.id === card.id ? { ...c, text: updatedText, isNewCard: false } : c));
-      setIsInputText(false);
+    if (updatedText === '') {
+      updatedText = "..."
     }
-    catch (error) {
-      console.log('Error updating card text');
-    }
+    await updateCard(card.id, { ...card, text: updatedText, isNewCard: false });
+    setIsInputText(false);
   }
 
   const handleTextChange = (newText) => {
-    setCards(prev => prev.map(c => c.id === card.id ? { ...c, text: newText } : c));
+    updateCardLocali(card.id, { ...card, text: newText });
   }
 
   const onColorChange = async (color) => {
-    try {
-      await cardsService.updateCard(card.id, { color: color });
-      setCards((prevCards) => {
-        const cardIndex = prevCards.findIndex((c) => c.id === card.id);
-        if (cardIndex === -1) return prevCards;
-        const updatedCards = [...prevCards];
-        updatedCards[cardIndex] = { ...updatedCards[cardIndex], color };
-        return updatedCards;
-      });
-    }
-    catch (err) {
-      console.log(err.message);
-    }
+    await updateCard(card.id, { ...card, color: color });
+  }
+
+  const deleteThisCard = async () => {
+    await deleteCard(card.id);
   }
 
   return (
@@ -70,7 +45,7 @@ function Card({ card, setCards }) {
           onBlur={(e) => changeText(e.target.value)} />}
       </p>
       <button onClick={showColorsF}><AiOutlineBgColors /></button>
-      <button onClick={deleteCard}><MdDeleteSweep /></button>
+      <button onClick={deleteThisCard}><MdDeleteSweep /></button>
       {showColors && <Colors id={card.id} onColorChange={onColorChange} />}
     </div>
   )
