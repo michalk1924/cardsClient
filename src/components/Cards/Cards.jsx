@@ -39,7 +39,8 @@ function Cards() {
             {cards.map(card =>
                 <Card card={card} key={card.id} setCards={setCards} />
             )}
-            <div className={styles.buttonContainer}><button className={styles.addButton} onClick={addCard} ><IoMdAdd /></button></div>
+            <div className={styles.buttonContainer}><button className={styles.addButton} onClick={addCard} >
+                <IoMdAdd /></button></div>
 
         </div>
     )
