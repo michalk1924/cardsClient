@@ -27,7 +27,6 @@ function Card({ card, setCards }) {
   }
 
   const changeText = async (updatedText) => {
-    debugger
     try {
       if (updatedText === '') {
         updatedText = "..."
@@ -63,13 +62,13 @@ function Card({ card, setCards }) {
 
   return (
     <div className={`${styles.card} ${styles[card.color]}`}>
-      <h2 id={`text${card.id}`} onClick={() => { setIsInputText(true) }}>
+      <p id={`text${card.id}`} onClick={() => { setIsInputText(true) }}>
         {!isInputText && <span>{card.text}</span>}
         {isInputText && <input type="text" value={card.text}
           onChange={(e) => handleTextChange(e.target.value)}
           onKeyDown={e => e.key === 'Enter' ? changeText(e.target.value) : {}}
           onBlur={(e) => changeText(e.target.value)} />}
-      </h2>
+      </p>
       <button onClick={showColorsF}><AiOutlineBgColors /></button>
       <button onClick={deleteCard}><MdDeleteSweep /></button>
       {showColors && <Colors id={card.id} onColorChange={onColorChange} />}
