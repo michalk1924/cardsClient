@@ -61,7 +61,7 @@ function Card({ card, setCards }) {
 
   return (
     <div className={`${styles.card} ${styles[card.color]}`}>
-      <h2 id={`text${card.id}`} onClick={() => { setIsInputText(true) }}>
+      <h2 id={`text${card.id}`} onClick={() => { setIsInputText(true)}}>
         {!isInputText && <span>{card.text}</span>}
         {isInputText && <input type="text" value={card.text}
           onChange={(e) => handleTextChange(e.target.value)}
