@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import cardsService from '../../servies/cards'
 import Card from '../Card/Card.jsx'
 import styles from './Cards.module.css'
-import { IoMdAdd } from'react-icons/io';
+import { IoMdAdd } from 'react-icons/io';
 
 function Cards() {
-
 
     const [cards, setCards] = useState([]);
 
@@ -27,7 +26,7 @@ function Cards() {
     const addCard = async () => {
         try {
             const response = await cardsService.createCard({});
-            setCards([...cards, response]);
+            setCards([...cards, {...response, isNewCard: true}]);
         }
         catch (error) {
             console.log(error.message);
@@ -39,8 +38,11 @@ function Cards() {
             {cards.map(card =>
                 <Card card={card} key={card.id} setCards={setCards} />
             )}
-            <div className={styles.buttonContainer}><button className={styles.addButton} onClick={addCard} ><IoMdAdd /></button></div>
-
+            <div className={styles.buttonContainer}>
+                <button className={styles.addButton} onClick={addCard} >
+                    <IoMdAdd />
+                </button>
+            </div>
         </div>
     )
 }
