@@ -24,17 +24,10 @@ function Card({ card, setCards }) {
     }
   }
 
-  const handleEnterPress = async (e) => {
-    if (e.key === 'Enter' && card.text.trim()) {
-     changeText(e.target.value);
-    }
-  };
-
   const changeText = async (updatedText) => {
     try {
-      await cardsService.updateCard(card.id,{ text: updatedText });
+      await cardsService.updateCard(card.id, { text: updatedText });
       setCards(prev => prev.map(c => c.id === card.id ? { ...c, text: updatedText } : c));
-      setIsInputText(false);
     }
     catch (error) {
       console.log('Error updating card text');
@@ -43,6 +36,14 @@ function Card({ card, setCards }) {
 
   const handleTextChange = (newText) => {
     setCards(prev => prev.map(c => c.id === card.id ? { ...c, text: newText } : c));
+  }
+
+  const handleSave = (value) => {
+    const trimmedValue = value.trim();
+    if (trimmedValue && trimmedValue !== card.text) {
+      changeText(trimmedValue);
+    }
+    setIsInputText(false);
   };
 
 
@@ -52,7 +53,8 @@ function Card({ card, setCards }) {
         {!isInputText && <span>{card.text}</span>}
         {isInputText && <input type="text" value={card.text}
           onChange={(e) => handleTextChange(e.target.value)}
-          onKeyDown={handleEnterPress} />}
+          onKeyDown={e => e.key === 'Enter' ? handleSave(e.target.value): {}}
+          onBlur={(e) => handleSave(e.target.value)}/>}
       </h2>
       <button onClick={showColorsF}><AiOutlineBgColors /></button>
       <button onClick={deleteCard}><MdDeleteSweep /></button>
