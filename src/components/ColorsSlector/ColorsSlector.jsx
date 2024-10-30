@@ -13,7 +13,7 @@ function ColorsSlector({ id, onColorChange }) {
     return (
         <div id={`colors${id}`} className={styles.colorsSlector}>
             {colors.map(color =>
-                <div onClick={() => onColorChange(id, color)} key={color}
+                <div onClick={() => onColorChange(color)} key={color}
                     className={`${styles.colorCircle} ${styles[color]}`} />
             )}
         </div>

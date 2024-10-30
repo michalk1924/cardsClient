@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './Card.module.css'
 import cardsService from '../../servies/cards'
-import Colors from '../Colors/ColorsSlector'
+import Colors from '../ColorsSlector/ColorsSlector'
 import { AiOutlineBgColors } from 'react-icons/ai';
 import { MdDeleteSweep } from 'react-icons/md';
 
@@ -9,6 +9,8 @@ function Card({ card, setCards }) {
 
   const [showColors, setShowColors] = useState(false);
   const [isInputText, setIsInputText] = useState(false);
+
+  useEffect(() => { card.isNewCard ? setIsInputText(true) : setIsInputText(false) }, [card]);
 
   const showColorsF = () => {
     setShowColors(prev => !prev);
@@ -30,7 +32,7 @@ function Card({ card, setCards }) {
         updatedText = "..."
       }
       await cardsService.updateCard(card.id, { text: updatedText });
-      setCards(prev => prev.map(c => c.id === card.id ? { ...c, text: updatedText } : c));
+      setCards(prev => prev.map(c => c.id === card.id ? { ...c, text: updatedText, isNewCard: false } : c));
       setIsInputText(false);
     }
     catch (error) {
@@ -42,12 +44,11 @@ function Card({ card, setCards }) {
     setCards(prev => prev.map(c => c.id === card.id ? { ...c, text: newText } : c));
   }
 
-  const onColorChange = async (cardId, color) => {
+  const onColorChange = async (color) => {
     try {
-      console.log(cardId, color);
-      await cardsService.updateCard(cardId, { color: color });
+      await cardsService.updateCard(card.id, { color: color });
       setCards((prevCards) => {
-        const cardIndex = prevCards.findIndex((c) => c.id === cardId);
+        const cardIndex = prevCards.findIndex((c) => c.id === card.id);
         if (cardIndex === -1) return prevCards;
         const updatedCards = [...prevCards];
         updatedCards[cardIndex] = { ...updatedCards[cardIndex], color };
@@ -61,7 +62,7 @@ function Card({ card, setCards }) {
 
   return (
     <div className={`${styles.card} ${styles[card.color]}`}>
-      <h2 id={`text${card.id}`} onClick={() => { setIsInputText(true)}}>
+      <h2 id={`text${card.id}`} onClick={() => { setIsInputText(true) }}>
         {!isInputText && <span>{card.text}</span>}
         {isInputText && <input type="text" value={card.text}
           onChange={(e) => handleTextChange(e.target.value)}
