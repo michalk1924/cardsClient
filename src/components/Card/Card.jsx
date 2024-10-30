@@ -10,7 +10,7 @@ function Card({ card, setCards }) {
   const [showColors, setShowColors] = useState(false);
   const [isInputText, setIsInputText] = useState(false);
 
-  useEffect(() => { card.isNewCard ? setIsInputText(true) : setIsInputText(false) }, [card]);
+  useEffect(() => { if(card.isNewCard) setIsInputText(true)}, [card]);
 
   const showColorsF = () => {
     setShowColors(prev => !prev);
@@ -27,6 +27,7 @@ function Card({ card, setCards }) {
   }
 
   const changeText = async (updatedText) => {
+    debugger
     try {
       if (updatedText === '') {
         updatedText = "..."
