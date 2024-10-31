@@ -4,7 +4,7 @@ import Colors from '../ColorsSlector/ColorsSlector'
 import { AiOutlineBgColors } from 'react-icons/ai';
 import { MdDeleteSweep } from 'react-icons/md';
 
-function Card({ card, updateCard, deleteCard, updateCardLocali }) {
+function Card({ card, updateCard, updateCardLocali, deleteCard }) {
 
   const [showColors, setShowColors] = useState(false);
   const [isInputText, setIsInputText] = useState(false);
