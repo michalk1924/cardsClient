@@ -1,12 +1,55 @@
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    margin-top: 7vh;
     grid-gap: 1em;
     padding: 1rem;
     border-radius: 10px;
 }
 
-.buttonContainer {
+.serachDiv{
+  
+}
+
+.serachDiv {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.1rem;
+    width: 100%;
+    max-width: 400px;
+    background-color: #f9f9f9;
+    position: absolute;
+    top: 2vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 1rem auto 0 auto;
+    border-radius: 5px;
+}
+
+.serachDiv input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 5px;
+    background-color: transparent;
+}
+
+.serachDiv input::placeholder {
+    color: #aaa;
+}
+
+.serachDiv svg {
+    font-size: 24px;
+    color: #666;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+
+.buttonContainer{
     display: flex;
     justify-content: center;
     align-items: center;
